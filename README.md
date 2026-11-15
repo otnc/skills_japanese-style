@@ -1,39 +1,32 @@
-# Agent Skills source repository template
+# japanese-style
 
-**English** | [日本語](README.ja.md)
+AI エージェントが日本語で回答やドキュメントを書くときに、読み手が普段使う用語を選ぶためのスキルです。会話、進捗報告、結論、要約、日本語で書くコードコメントにも使えます。
 
-Use this template to create a public `otnc/skills_<name>` repository that can be included in [otnc/agent-skills](https://github.com/otnc/agent-skills).
+ソフトウェアの説明では「Node.js の版を確認した」より「Node.js のバージョンを確認した」のほうが伝わりやすく、書籍なら「第2版」が自然です。読み手が見慣れた呼び方を選び、画面のラベルやコマンドは実際の表記に合わせます。
 
-## Start a repository
-
-1. Copy the template into a new repository. Replace `example-skill` in the folder name, the `name` field in `SKILL.md`, and the install commands in this file. Update the package name and description in `package.json`. If the repository name differs from the skill name, use the repository name in the install command and the skill name with `--skill`.
-2. Replace `[year]` and `[author]` in `LICENSE` with the copyright year and holder. Set the `author` field in `package.json` to the package author.
-3. Write the skill in `skills/<name>/SKILL.md`. In `description`, specify what the skill does and when agents should use it. Add `references/`, `scripts/`, or `assets/` inside the skill directory when the instructions need them. Keep files used by a skill inside its directory so it works when installed on its own.
-4. Replace the README content in `base/README.base.md` with usage instructions for the new skill. Run the commands below and commit the generated READMEs and lockfile.
+## インストール
 
 ```sh
-npm install
-npm run docs:build
+npx skills@latest add otnc/skills_japanese-style --skill japanese-style
+```
+
+クローンしたリポジトリから試す場合は、そのディレクトリで `npx skills@latest add . --skill japanese-style` を実行してください。
+
+## 使い方
+
+インストール後、日本語で文章を書いたりまとめたりする場面で使えます。スキルを指定して依頼することもできます。
+
+> japanese-style を使って、この変更を日本語でまとめて。ソフトウェアの用語は開発者が普段使う表記にそろえて。
+
+詳しいルールは [SKILL.md](skills/japanese-style/SKILL.md)、開発でよく使う表記は [技術用語の例](skills/japanese-style/references/terminology.md) にまとめています。一覧にない言葉も、読み手に通じやすいカタカナ語ならそのまま使います。
+
+## 開発
+
+```sh
+npm ci
 npm run check
 ```
 
-Use the Node.js version in `.node-version` for development. After the initial setup, use `npm ci` to install dependencies from the lockfile.
-
-## Install
-
-After publishing the source repository on GitHub, install the skill directly or from the collection after it syncs.
-
-```sh
-npx skills@latest add otnc/skills_example-skill --skill example-skill
-npx skills@latest add otnc/agent-skills --skill example-skill
-```
-
-## Release
-
-The first version is `0.1.0`. For later releases, run `npm version patch --no-git-tag-version` or select another version bump. Push the version and skill changes to the default branch, then run the **release** workflow on that branch. It runs the same checks as CI and publishes a GitHub Release with a `v<version>` tag and notes from the commit history.
-
-The [aggregation workflow](https://github.com/otnc/agent-skills/blob/main/CONTRIBUTING.md) discovers public `otnc/skills_*` repositories after a stable release is published.
-
-## License
+## ライセンス
 
 [MIT](LICENSE)
