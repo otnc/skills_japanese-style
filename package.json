@@ -2,7 +2,7 @@
   "name": "skills_japanese-style",
   "version": "0.1.0",
   "private": true,
-  "description": "An Agent Skill for choosing familiar terms in Japanese prose.",
+  "description": "An Agent Skill for writing and checking Japanese prose.",
   "license": "MIT",
   "author": "otoneko.",
   "type": "module",
@@ -12,7 +12,8 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "skills:list": "skills add . --list",
-    "check": "npm run validate && npm run skills:list"
+    "test": "node --test scripts/lint.test.mjs",
+    "check": "npm run validate && npm test && npm run skills:list"
   },
   "devDependencies": {
     "skills": "1.8.1",
