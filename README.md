@@ -20,6 +20,8 @@ npx skills@latest add otnc/skills_japanese-style --skill japanese-style
 
 [SKILL.md](skills/japanese-style/SKILL.md) に文章の基本ルール、[文章ガイド](skills/japanese-style/references/writing-guide.md) に情報の並べ方や図表の書き方、[修正例](skills/japanese-style/references/writing-examples.md) に媒体ごとの書き換え例をまとめています。[技術用語の例](skills/japanese-style/references/terminology.md) にない言葉も、読み手に通じやすいカタカナ語ならそのまま使います。
 
+[読点の使い方](skills/japanese-style/references/commas.md) には、読点を外すと読みやすくなる文と、区切りを示すために残す文の例があります。
+
 ## lint
 
 リポジトリのルートから、Node.js で UTF-8 のファイルを検査できます。用語、康熙部首、文字化けは個別に検査できます。オプションを省略すると全項目を検査し、複数指定すると選んだ項目を検査します。標準入力から読む場合は、ファイル名の代わりに `-` を指定します。
@@ -58,6 +60,23 @@ npm run check
 - [ChatGPT の日本語生成能力の評価](https://www.jstage.jst.go.jp/article/jnlp/31/2/31_349/_article/-char/ja)
 - [日本語での丁寧さの調整を調べた研究](https://aclanthology.org/2026.gebnlp-1.7/)
 - [日中同形異義語の理解を評価した研究](https://aclanthology.org/2025.ijcnlp-long.96/)
+
+### 読点の使い方
+
+- [国立国語研究所の読点の解説](https://kotoba.ninjal.ac.jp/qa/yokuaru/qa-53/)
+- [文化庁の公用文作成の考え方](https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/93657201.html)
+- [意味的バイアスを持つ日本語両義文の処理に及ぼすカンマの影響](https://www.jstage.jst.go.jp/article/jjpsy/85/2/85_85.13311/_article/-char/ja/)
+- [人文系論文における「は」直後の読点使用の研究](https://www.jstage.jst.go.jp/article/jtje/26/0/26_27/_article/-char/ja/)
+- [読点が接続詞の直後に打たれる要因](https://www.jstage.jst.go.jp/article/mathling/31/6/31_426/_article/-char/ja/)
+- [岩崎拓也『現代日本語における句読点の研究』](https://cocopb.com/books/978-4-86676-062-9/)
+- [本多勝一『〈新版〉日本語の作文技術』](https://publications.asahi.com/product/17593.html)
+- [AI 生成文からみた「自然な日本語」についての研究](https://home.hiroshima-u.ac.jp/jshira/papers/AI%E7%94%9F%E6%88%90%E6%96%87%E3%81%8B%E3%82%89%E3%81%BF%E3%81%9F%E3%80%8C%E8%87%AA%E7%84%B6%E3%81%AA%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%80%8D%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E7%A0%94%E7%A9%B6%EF%BC%88%E5%A4%A7%E8%A5%BF%E5%A4%A2%EF%BC%89.pdf)
+- [Zenn の推敲前後の比較](https://zenn.dev/kakushigoto/articles/slop-banlist-vs-yomiyasu)
+- [Zenn の業務報告の推敲例](https://zenn.dev/koji4/articles/42b8c6d5901323)
+- [Zenn の AI 生成文の校正実験](https://zenn.dev/numarn/articles/japanese-doc-lint-handson)
+- [Qiita の語順の修正例](https://qiita.com/Gaakuu/items/36a70ab00d8a3347c750)
+- [Qiita の技術記事の書き方の実例](https://qiita.com/Yametaro/items/21b8772e6c0d1d77e176)
+- [Qiita の textlint 設定例](https://qiita.com/k8uwall/items/3c29ef2dce153e13bd1d)
 
 ### 技術用語の表記
 
