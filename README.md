@@ -45,6 +45,12 @@ npm ci
 npm run check
 ```
 
+## 参考プロンプトの更新確認
+
+GitHub Actions の **check upstream prompt** が毎週月曜の20時（日本時間）に AoTofu さんの公開プロンプトのリポジトリを確認します。前回の報告から更新があれば、その日の Issue を1件作ります。Issue に付く `upstream-prompt` ラベルと差分リンクから、スキルに反映する内容を確認できます。
+
+このワークフローが作成した Issue のうち、開いているものは新しい順に5件残します。閉じた Issue も、報告済みの更新を判別するために参照します。
+
 ## リリース
 
 1. リリースする変更をデフォルトブランチにプッシュします。
@@ -55,7 +61,7 @@ npm run check
 
 ### 日本語の文章と評価
 
-- [AoTofu の公開プロンプト](https://github.com/AoTofu/my-claude-system-prompt/blob/main/system-prompt.md)
+- [AoTofu さんの公開プロンプト](https://github.com/AoTofu/my-claude-system-prompt)
 - [日本翻訳連盟の日本語標準スタイルガイド](https://www.jtf.jp/tips/styleguide)
 - [ChatGPT の日本語生成能力の評価](https://www.jstage.jst.go.jp/article/jnlp/31/2/31_349/_article/-char/ja)
 - [日本語での丁寧さの調整を調べた研究](https://aclanthology.org/2026.gebnlp-1.7/)
