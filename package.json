@@ -12,7 +12,7 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "skills:list": "skills add . --list",
-    "test": "node --test scripts/lint.test.mjs",
+    "test": "node --test scripts/lint.test.mjs scripts/check-upstream-prompt.test.mjs",
     "check": "npm run validate && npm test && npm run skills:list"
   },
   "devDependencies": {
