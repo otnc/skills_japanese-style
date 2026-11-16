@@ -1,6 +1,6 @@
 {
   "name": "skills_japanese-style",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "description": "An Agent Skill for writing and checking Japanese prose.",
   "license": "MIT",
