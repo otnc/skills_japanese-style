@@ -22,6 +22,8 @@ npx skills@latest add otnc/skills_japanese-style --skill japanese-style
 
 [読点の使い方](skills/japanese-style/references/commas.md) には読み誤りを防ぐ位置にだけ読点を打つ方針と、読点を打つ文と外す文の例があります。
 
+[LLM が書きやすい日本語の癖](skills/japanese-style/references/llm-habits.md) には決まった前置きと結び、そろいすぎた形、打ち消しの多用、論文調の述語、英語の構文の写しの見直し方があります。
+
 ## lint
 
 リポジトリのルートから、Node.js で UTF-8 のファイルを検査できます。用語、康熙部首、文字化けは個別に検査できます。オプションを省略すると全項目を検査し、複数指定すると選んだ項目を検査します。標準入力から読む場合は、ファイル名の代わりに `-` を指定します。
@@ -126,6 +128,15 @@ GitHub Actions の **check upstream prompt** が毎週月曜の20時（日本時
 - [Codex が PowerShell で UTF-8 の文書を読み違える報告](https://github.com/openai/codex/issues/23044)
 - [ChatGPT 由来と報告された「視覴」の調査](https://okumuralab.org/~okumura/misc/230611.html)
 - [Claude が文脈に合わない漢字を出した事例](https://note.com/tank_ai/n/n6fc0af2437e6)
+
+### LLM が書く日本語の癖
+
+- [LLM による日本語生成におけるモデル固有表現パターンの分析](https://www.anlp.jp/proceedings/annual_meeting/2026/pdf_dir/B9-17.pdf)
+- [小学校漢字学習における LLM 生成物語の「違和感」に関する類型化](https://www.jstage.jst.go.jp/article/pjsai/JSAI2026/0/JSAI2026_4YinB15/_pdf/-char/ja)
+- [Lost in Mimicry: Verified Training-Free Post-Editing for LLM Translationese](https://www2.statmt.org/wmt26/pdf/2026.wmt-1.25.pdf)
+- [Zenn の7モデル406本の AI 臭の実測](https://zenn.dev/coji/articles/natural-japanese-ai-smell-lint)
+- [Zenn の Claude Code に理解しやすい日本語を書かせる工夫](https://zenn.dev/ncdc/articles/6ea029ba5ecf65)
+- [飯田一史さんによる AI くさい論文調の表現の解説](https://president.jp/articles/-/119779)
 
 ### スキルの仕様と配布
 
