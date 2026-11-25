@@ -20,7 +20,7 @@ npx skills@latest add otnc/skills_japanese-style --skill japanese-style
 
 [SKILL.md](skills/japanese-style/SKILL.md) に文章の基本ルール、[文章ガイド](skills/japanese-style/references/writing-guide.md) に情報の並べ方や図表の書き方、[修正例](skills/japanese-style/references/writing-examples.md) に媒体ごとの書き換え例をまとめています。[技術用語の例](skills/japanese-style/references/terminology.md) にない言葉も、読み手に通じやすいカタカナ語ならそのまま使います。
 
-[読点の使い方](skills/japanese-style/references/commas.md) には、読点を外すと読みやすくなる文と、区切りを示すために残す文の例があります。
+[読点の使い方](skills/japanese-style/references/commas.md) には読み誤りを防ぐ位置にだけ読点を打つ方針と、読点を打つ文と外す文の例があります。
 
 ## lint
 
