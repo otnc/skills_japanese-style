@@ -1,5 +1,7 @@
-const upstream = "AoTofu/my-claude-system-prompt";
+const referenceRepository = "AoTofu/my-claude-system-prompt";
 const initialRevision = "07d15d24fee2f47039d78d2e5f08de7c488239c5";
+// The label and marker still say "upstream" because earlier issues use them
+// to record the last reported revision; renaming them would re-report old changes.
 const label = "upstream-prompt";
 const issueAuthor = "github-actions[bot]";
 const revisionMarker = /^<!-- upstream-prompt: ([0-9a-f]{40}) -->$/m;
@@ -23,7 +25,7 @@ async function listUpdateIssues(request, repositoryPath) {
 }
 
 /**
- * Checks for upstream changes and keeps the newest update issues open.
+ * Checks the reference prompt repository for new commits and keeps the newest update issues open.
  * The clock and HTTP client can be supplied for an offline run.
  *
  * @example
@@ -49,24 +51,24 @@ export async function checkUpstreamPrompt({ repository, token, now = new Date(),
   }
 
   const repositoryPath = `/repos/${repository}`;
-  const [head] = await request(`/repos/${upstream}/commits?per_page=1`);
-  if (!/^[0-9a-f]{40}$/.test(head?.sha ?? "")) throw new Error("The upstream repository returned no valid commit SHA.");
+  const [head] = await request(`/repos/${referenceRepository}/commits?per_page=1`);
+  if (!/^[0-9a-f]{40}$/.test(head?.sha ?? "")) throw new Error("The reference repository returned no valid commit SHA.");
 
   const issues = await listUpdateIssues(request, repositoryPath);
   // Closed issues still record which upstream revision was last reported.
   const previousRevision = issues[0]?.revision ?? initialRevision;
-  const title = `Review upstream writing rules for ${tokyoDate.format(now)}`;
+  const title = `Review changes to the reference writing prompt (${tokyoDate.format(now)})`;
 
   if (head.sha !== previousRevision && !issues.some((issue) => issue.title === title)) {
     const existingLabel = await request(`${repositoryPath}/labels/${label}`, { allowNotFound: true });
     if (existingLabel === null) {
       await request(`${repositoryPath}/labels`, {
         method: "POST",
-        body: { name: label, color: "5319E7", description: "Upstream writing rule updates" },
+        body: { name: label, color: "5319E7", description: "Changes to the reference writing prompt" },
       });
     }
 
-    const upstreamUrl = `https://github.com/${upstream}`;
+    const referenceUrl = `https://github.com/${referenceRepository}`;
     const issue = await request(`${repositoryPath}/issues`, {
       method: "POST",
       body: {
@@ -75,10 +77,11 @@ export async function checkUpstreamPrompt({ repository, token, now = new Date(),
         body: [
           `<!-- upstream-prompt: ${head.sha} -->`,
           "",
-          "The upstream repository changed. Review the diff and apply any Japanese writing guidance that fits this skill.",
+          `The reference prompt in [${referenceRepository}](${referenceUrl}) has new commits since the last report. This skill uses it as a reference, not as an upstream to sync with.`,
           "",
-          `- [Changes since the last report](${upstreamUrl}/compare/${previousRevision}...${head.sha})`,
-          `- [Upstream repository](${upstreamUrl})`,
+          "Read the changes and adopt only the guidance that fits this skill's readers and media. Leaving a change out is fine; note the reason in this issue when you close it.",
+          "",
+          `- [Changes since the last report](${referenceUrl}/compare/${previousRevision}...${head.sha})`,
         ].join("\n"),
       },
     });

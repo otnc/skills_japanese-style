@@ -4,7 +4,7 @@ import { checkUpstreamPrompt } from "./check-upstream-prompt.mjs";
 
 const repository = "owner/repo";
 const repositoryPath = `/repos/${repository}`;
-const upstreamPath = "/repos/AoTofu/my-claude-system-prompt/commits";
+const referenceCommitsPath = "/repos/AoTofu/my-claude-system-prompt/commits";
 const baseline = "07d15d24fee2f47039d78d2e5f08de7c488239c5";
 const updated = "a".repeat(40);
 const newer = "b".repeat(40);
@@ -13,7 +13,7 @@ const now = new Date("2026-11-16T15:10:00Z");
 function updateIssue(number, revision, options = {}) {
   return {
     number,
-    title: "Review upstream writing rules for 2026-11-16",
+    title: "Review changes to the reference writing prompt (2026-11-16)",
     body: `<!-- upstream-prompt: ${revision} -->`,
     state: "open",
     user: { login: "github-actions[bot]" },
@@ -26,7 +26,7 @@ function mockGitHub({ head = updated, issues = [], labelExists = true } = {}) {
   const pages = [];
   async function requestFetch(url, { method, body }) {
     const { pathname, searchParams } = new URL(url);
-    if (method === "GET" && pathname === upstreamPath) return Response.json([{ sha: head }]);
+    if (method === "GET" && pathname === referenceCommitsPath) return Response.json([{ sha: head }]);
     if (method === "GET" && pathname === `${repositoryPath}/issues`) {
       assert.equal(searchParams.get("state"), "all");
       assert.equal(searchParams.get("labels"), "upstream-prompt");
@@ -51,7 +51,7 @@ function mockGitHub({ head = updated, issues = [], labelExists = true } = {}) {
   };
 }
 
-test("skips issue creation when upstream is unchanged from the incorporated revision", async () => {
+test("skips issue creation when the reference prompt is unchanged from the incorporated revision", async () => {
   const github = mockGitHub({ head: baseline });
   await github.run();
   assert.deepEqual(github.changes, []);
@@ -68,7 +68,7 @@ test("creates a labeled issue dated in Tokyo and closes only the oldest managed 
   assert.equal(label.pathname, `${repositoryPath}/labels`);
   assert.equal(label.data.name, "upstream-prompt");
   assert.equal(created.pathname, `${repositoryPath}/issues`);
-  assert.equal(created.data.title, "Review upstream writing rules for 2026-11-17");
+  assert.equal(created.data.title, "Review changes to the reference writing prompt (2026-11-17)");
   assert.deepEqual(created.data.labels, ["upstream-prompt"]);
   assert.ok(created.data.body.includes(`/compare/${baseline}...${updated})`));
   assert.deepEqual(closed, [2, 1].map((number) => ({
@@ -86,7 +86,7 @@ test("uses closed issues to recognize a reported revision and avoid a duplicate 
 
   const sameDay = mockGitHub({
     head: newer,
-    issues: [{ ...closed, title: "Review upstream writing rules for 2026-11-17" }],
+    issues: [{ ...closed, title: "Review changes to the reference writing prompt (2026-11-17)" }],
   });
   await sameDay.run();
   assert.deepEqual(sameDay.changes, []);
